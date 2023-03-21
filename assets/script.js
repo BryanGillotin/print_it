@@ -26,33 +26,38 @@ let currentSlide = 0;
 /*Arrow Left*/
 
 const arrowLeft = document.querySelector(".arrow_left");
-console.log(arrowLeft);
 
 arrowLeft.addEventListener("click", onArrowClick);
 
 /*Arrow Right*/
 
 const arrowRight = document.querySelector(".arrow_right");
-console.log(arrowRight);
 
 arrowRight.addEventListener("click", onArrowClick);
 
 /*Fonction*/
 
 function onArrowClick() {
-    console.log(this, currentSlide);
     let direction = 0;
     if (this.classList.contains("arrow_left")) {
-        console.log("clique sur la flèche gauche");
         direction = -1;
     } else {
-        console.log("clique sur la flèche droite");
         direction = 1;
     }
     currentSlide += direction;
-    console.log(currentSlide);
+    showSlide(currentSlide);
+    updateBulletPoints(currentSlide);
+}
 
-    /*à faire*/
+function showSlide(currentSlide) {
+    const slide = slides[currentSlide];
+    const image = document.querySelector(".banner-img");
+    const paragraph = document.querySelector("#banner p");
+    image.alt = slide.image;
+    image.src = `./assets/images/slideshow/${slide.image}`;
+    paragraph.innerHTML = slide.tagLine;
+}
 
-    console.log(slides[currentSlide]);
+function updateBulletPoints(currentSlide) {
+    console.log(`selectionner le bullet points n°${currentSlide}`);
 }
