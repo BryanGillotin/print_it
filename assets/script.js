@@ -45,6 +45,7 @@ function onArrowClick() {
         direction = 1;
     }
     currentSlide += direction;
+    //boucle infini here (entre 0 et 3)
     showSlide(currentSlide);
     updateBulletPoints(currentSlide);
 }
@@ -60,4 +61,40 @@ function showSlide(currentSlide) {
 
 function updateBulletPoints(currentSlide) {
     console.log(`selectionner le bullet points n°${currentSlide}`);
+    //récup la liste des bullets points
+    //faire une boucle for pour les parcourir (regarder code en bas de la page)(note test)
+    //faire une condition pour add ou remove la class dotselected
+}
+
+/*test*/
+
+const tag = prompt("indiquer un nom de balise");
+console.log(tag);
+let currentTag = 0;
+//récuperer la liste demander
+const tags = document.querySelectorAll(tag);
+console.log(tags);
+//ajouter un évènement sur les touches directionnelles sur la page
+document.addEventListener("keydown", test);
+//créé la fonction de l'évènement pour entourer une des balises rechercher
+function test(event) {
+    if (event.key === "ArrowLeft") {
+        currentTag = currentTag - 1;
+    } else if (event.key === "ArrowRight") {
+        currentTag = currentTag + 1;
+    } else {
+        console.warn(event.key);
+        return;
+    }
+    console.log(currentTag);
+    for (let i = 0; i < tags.length; i++) {
+        console.log(i, tags[i]);
+        if (i === currentTag) {
+            tags[i].style.border = "1px solid red";
+            tags[i].classList.add("bg-yellow");
+        } else {
+            tags[i].style.border = "none";
+            tags[i].classList.remove("bg-yellow");
+        }
+    }
 }
